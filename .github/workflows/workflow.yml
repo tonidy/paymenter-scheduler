@@ -2,7 +2,7 @@ name: 8labs-workflow
 
 on:
   schedule:
-    - cron: "*/1 * * * *" # every minute
+    - cron: "*/5 * * * *" # every 5 minute
     # - cron: "0 18 * * *" # every day at 1am WIB
   workflow_dispatch: # manual trigger support
 
@@ -21,5 +21,5 @@ jobs:
         run: bun index.ts
         env:
           ENABLE_PAYMENT: false
-          BASE_URL: ${{ env.BASE_URL }}
+          BASE_URL: ${{ vars.BASE_URL }}
           USER_TOKEN: ${{ secrets.USER_TOKEN }}
