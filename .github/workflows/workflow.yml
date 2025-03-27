@@ -1,0 +1,24 @@
+name: 8labs-workflow
+
+on:
+  schedule:
+    - cron: "*/1 * * * *" # every minute
+    # - cron: "0 18 * * *" # every day at 1am WIB
+  workflow_dispatch: # manual trigger support
+
+jobs:
+  paymenter-job:
+    name: paymenter-job
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+
+      - run: bun install
+
+      # 👇 Pass environment variable to disable payment
+      - name: Run invoice script
+        run: bun index.ts
+        env:
+          ENABLE_PAYMENT: false
+          BASE_URL: "https://my.8labs.id"
