@@ -37,7 +37,7 @@ async function main() {
 
     const paidInvoice = await payInvoice(invoiceToPay.id, "credits");
 
-    console.log(`✅ Invoice #${paidInvoice.id} paid successfully!`);
+    console.log(`✅ Invoice #${invoiceToPay.id} paid successfully!`);
   } catch (error) {
     console.error("❌ Error:", error);
   }
