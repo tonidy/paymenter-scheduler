@@ -1,5 +1,6 @@
 # paymenter-scheduler
 
+# Getting Started
 To install dependencies:
 
 ```bash
@@ -12,4 +13,11 @@ To run:
 bun run index.ts
 ```
 
-This project was created using `bun init` in bun v1.2.7. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+## Setup GitHub Environment Variables
+
+```bash
+BASE_URL=https://my.8labs.id
+USER_TOKEN=
+ENABLE_PAYMENT=true
+```
+![Setup Github Env](setup-env.png)
