@@ -1,0 +1,22 @@
+name: keep-repo-alive
+
+on:
+  schedule:
+    - cron: "0 1 1 * *" # Every 1st of the month at 8 AM WIB (1 AM UTC)
+  workflow_dispatch:
+
+jobs:
+  keepalive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Make monthly dummy commit
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          echo "Last keepalive: $(date -u)" > .keepalive.txt
+          git add .keepalive.txt
+          git commit -m "chore: monthly keepalive 💡" || echo "No changes to commit"
+          git push
