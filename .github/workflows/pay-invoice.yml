@@ -1,4 +1,6 @@
-name: 8labs-workflow
+name: pay-invoice
+# This workflow is used to run the paymenter invoice script
+# on a schedule or manually.
 
 on:
   schedule:
@@ -15,8 +17,8 @@ on:
         type: boolean
 
 jobs:
-  paymenter-job:
-    name: paymenter-job
+  paymenter-pay-invoice:
+    name: paymenter-pay-invoice
     runs-on: ubuntu-latest
     environment: production
     steps:
@@ -25,9 +27,8 @@ jobs:
 
       - run: bun install
 
-      # 👇 Pass environment variable to disable payment
-      - name: Run invoice script
-        run: bun index.ts
+      - name: Run pay invoice script
+        run: bun run pay
         env:
           ENABLE_PAYMENT: ${{ inputs.ENABLE_PAYMENT || vars.ENABLE_PAYMENT }}
           BASE_URL: ${{ vars.BASE_URL }}

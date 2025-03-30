@@ -3,6 +3,15 @@ import { getInvoices, payInvoice } from "./services/invoice/invoice.service";
 
 async function main() {
   try {
+    // Get current time in WIB
+    const now = new Date();
+    const wibTime = new Date(now.getTime() + 7 * 60 * 60 * 1000)
+      .toISOString()
+      .replace("T", " ")
+      .slice(0, 19);
+
+    console.log(`🕒 Running at: ${wibTime} WIB`);
+
     const response = await getInvoices();
 
     const pendingInvoices = response.data.filter(
@@ -14,15 +23,15 @@ async function main() {
       return;
     }
 
-    console.log("Pending Invoices:");
-    console.table(pendingInvoices, [
-      "id",
-      "user_id",
-      "order_id",
-      "status",
-      "due_date",
-      "created_at",
-    ]);
+    console.log("Pending Invoices: ", pendingInvoices);
+    // console.table(pendingInvoices, [
+    //   "id",
+    //   "user_id",
+    //   "order_id",
+    //   "status",
+    //   "due_date",
+    //   "created_at",
+    // ]);
 
     const enablePayment = process.env.ENABLE_PAYMENT === "true";
 
@@ -35,7 +44,7 @@ async function main() {
     const invoiceToPay = pendingInvoices[0]!;
     console.log(`Paying invoice #${invoiceToPay.id}...`);
 
-    const paidInvoice = await payInvoice(invoiceToPay.id, "credits");
+    await payInvoice(invoiceToPay.id, "credits");
 
     console.log(`✅ Invoice #${invoiceToPay.id} paid successfully!`);
   } catch (error) {

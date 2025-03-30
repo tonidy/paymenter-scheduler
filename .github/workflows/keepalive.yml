@@ -1,4 +1,9 @@
 name: keep-repo-alive
+# This workflow is used to keep the repository alive
+# by making a dummy commit every month.
+# This is useful for repositories that are not frequently updated
+# and need to be kept alive for various reasons.
+# For example, if you are using a free plan on GitHub.
 
 on:
   schedule:

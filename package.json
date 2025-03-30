@@ -4,8 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "start": "bun run index.ts",
-    "start:ticket": "bun run ticket.ts"
+    "pay": "bun run pay-invoice.ts",
+    "topup": "bun run create-topup-credit-ticket.ts"
   },
   "devDependencies": {
     "@types/bun": "latest"

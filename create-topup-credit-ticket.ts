@@ -8,6 +8,15 @@ import {
 
 async function main() {
   try {
+    // Get current time in WIB
+    const now = new Date();
+    const wibTime = new Date(now.getTime() + 7 * 60 * 60 * 1000)
+      .toISOString()
+      .replace("T", " ")
+      .slice(0, 19);
+
+    console.log(`🕒 Running at: ${wibTime} WIB`);
+
     const response = await getTickets();
 
     const pendingTickets = response.data.filter(
@@ -17,19 +26,18 @@ async function main() {
 
     if (pendingTickets.length > 0) {
       console.log("Pending Tickets:", pendingTickets);
-      //   console.table(pendingTickets, [
-      //     "id",
-      //     "title",
-      //     "status",
-      //     "priority",
-      //   ]);
+      // console.table(pendingTickets, [
+      //   "id",
+      //   "title",
+      //   "status",
+      //   "priority",
+      // ]);
       const ticketToReply = pendingTickets[0]!;
       console.log(`Replying to ticket #${ticketToReply.id}...`);
       const replyResp = await replyTicket(
         ticketToReply.id,
         {
-          message:
-            "Min, ini friendly reminder buat top up credit (biar gak lupa) 😊.",
+          message: "Min, ini friendly reminder buat top up credit. Makasih 😊.",
         },
       );
       if (replyResp) {
@@ -48,8 +56,18 @@ async function main() {
 
     // If below 65, continue to create a ticket
     console.log("Insufficient credit — proceeding to create a ticket...");
+
+    const enableCreateTicket = process.env.ENABLE_CREATE_TICKET === "true";
+
+    if (!enableCreateTicket) {
+      console.log(
+        "🚫 Create ticket is disabled via ENABLE_CREATE_TICKET env variable.",
+      );
+      return;
+    }
+
     const ticketResp = await createTicket({
-      title: "[TEST]Topup Credit from automation",
+      title: "[IMPORTANT]Topup Credit from automation",
       message: "Min, tolong topup credit akun ane 😊.",
       priority: "high",
     });
