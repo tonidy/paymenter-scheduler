@@ -42,7 +42,7 @@ async function main() {
     // console.log("Balance:", balanceResult);
 
     if (balanceResult.balance >= 65) {
-      console.log("Looks like your credit’s good — no ticket needed!");
+      console.log("Looks like your credits good — no ticket needed!");
       return;
     }
 
