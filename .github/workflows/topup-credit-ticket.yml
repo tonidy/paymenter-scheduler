@@ -31,7 +31,7 @@ jobs:
       - name: Run topup credit ticket script
         run: bun run topup
         env:
-          ENABLE_PAYMENT: ${{ inputs.ENABLE_CREATE_TICKET || vars.ENABLE_CREATE_TICKET }}
+          ENABLE_CREATE_TICKET: ${{ inputs.ENABLE_CREATE_TICKET || vars.ENABLE_CREATE_TICKET }}
           BASE_URL: ${{ vars.BASE_URL }}
           USER_TOKEN: ${{ secrets.USER_TOKEN }}
           COOKIE: ${{ secrets.COOKIE }}
