@@ -4,7 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "start": "bun run index.ts"
+    "start": "bun run index.ts",
+    "start:ticket": "bun run ticket.ts"
   },
   "devDependencies": {
     "@types/bun": "latest"
@@ -12,5 +13,8 @@
   "peerDependencies": {
     "typescript": "^5"
   },
-  "packageManager": "bun@1.2.7"
+  "packageManager": "bun@1.2.7",
+  "dependencies": {
+    "cheerio": "^1.0.0"
+  }
 }

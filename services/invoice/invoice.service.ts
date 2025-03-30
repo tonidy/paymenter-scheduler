@@ -23,7 +23,10 @@ export async function getInvoices(): Promise<InvoicesResponse> {
     redirect: "follow",
   };
 
-  const response = await fetch(`${BaseURL}/api/client/v1/invoices`, requestOptions);
+  const response = await fetch(
+    `${BaseURL}/api/client/v1/invoices`,
+    requestOptions,
+  );
 
   if (!response.ok) {
     const errorText = await response.text();
@@ -35,7 +38,10 @@ export async function getInvoices(): Promise<InvoicesResponse> {
   return json as InvoicesResponse;
 }
 
-export async function payInvoice(id: number, method: "credits" | string): Promise<Invoice> {
+export async function payInvoice(
+  id: number,
+  method: "credits" | string,
+): Promise<Invoice> {
   const requestOptions: RequestInit = {
     method: "POST",
     headers: {
@@ -47,11 +53,18 @@ export async function payInvoice(id: number, method: "credits" | string): Promis
     redirect: "follow",
   };
 
-  const response = await fetch(`${BaseURL}/api/client/v1/invoices/${id}/pay`, requestOptions);
+  const response = await fetch(
+    `${BaseURL}/api/client/v1/invoices/${id}/pay`,
+    requestOptions,
+  );
 
   if (!response.ok) {
     const errorText = await response.text();
-    console.error(`Payment error for invoice ${id}:`, response.status, errorText);
+    console.error(
+      `Payment error for invoice ${id}:`,
+      response.status,
+      errorText,
+    );
     throw new Error(`Failed to pay invoice ${id}: ${errorText}`);
   }
 

@@ -1,5 +1,3 @@
-import type { BaseResponse } from "../dtos/base-response";
-
 export interface Invoice {
   id: number;
   user_id: number;

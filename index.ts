@@ -6,7 +6,7 @@ async function main() {
     const response = await getInvoices();
 
     const pendingInvoices = response.data.filter(
-      (invoice: Invoice) => invoice.status === "pending"
+      (invoice: Invoice) => invoice.status === "pending",
     );
 
     if (pendingInvoices.length === 0) {
