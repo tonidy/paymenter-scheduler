@@ -1,4 +1,4 @@
-name: topup-credit
+name: topup-credit-ticket
 # This workflow is used to run the paymenter topup credit script
 # on a schedule or manually.
 
@@ -18,7 +18,7 @@ on:
         type: boolean
 
 jobs:
-  paymenter-topup-credit:
+  paymenter-topup-credit-ticket:
     name: paymenter-topup-credit
     runs-on: ubuntu-latest
     environment: production
