@@ -53,6 +53,7 @@ async function main() {
       message: "Min, tolong topup credit akun ane 😊.",
       priority: "high",
     });
+
     if (ticketResp) {
       console.log(`✅ Ticket ${ticketResp.id} created successfully!`);
     } else {
