@@ -12,7 +12,7 @@ if (!UserToken) {
   throw new Error("Missing USER_TOKEN in environment variables");
 }
 
-export async function getInvoices(): Promise<InvoicesResponse> {
+export async function getInvoices({ page = 1 }: { page?: number } = {}): Promise<InvoicesResponse> {
   const requestOptions: RequestInit = {
     method: "GET",
     headers: {
@@ -24,7 +24,7 @@ export async function getInvoices(): Promise<InvoicesResponse> {
   };
 
   const response = await fetch(
-    `${BaseURL}/api/client/v1/invoices`,
+    `${BaseURL}/api/client/v1/invoices?page=${page}`,
     requestOptions,
   );
 
